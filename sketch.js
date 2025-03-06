@@ -1,34 +1,46 @@
-let gatito;
-let gatito2;
 
 function preload() {
   // put preload code here
-  gatito = loadImage('./images/image.png');
-  gatito2 = loadImage('./images/image.png');
 }
 
 function setup() {
   // put setup code here
-  createCanvas(gatito.width, gatito.height);
-  noloop();
+  createCanvas(800, 800);
 }
 
 function draw() {
-  // put drawing code here
-  background(255)
-  let numPixeles = 4* gatito.width * gatito.height;
-  gatito.loadPixels();
-  for(let i = 0; i < numPixeles; i+=4){
-    //Red
-    gatito.pixels[i] = 255 - gatito.pixels[i];
-    //Green
-    gatito.pixels[i+1] = 255 - gatito.pixels[i+1];
-    //Blue     
-    gatito.pixels[i+2] = 255 - gatito.pixels[i+2];
-    //Alpha
-   // gatito.pixels[i+3] = 255;
-  }
-  gatito.updatePixels();
-  image(gatito, 0, 0);
-  image(gatito2, 0, 0, 300, 300);
+  //Fondo
+  background(120, 122, 34);
+  //Cabeza
+  push();
+  fill('#ADFF2F');
+  ellipse(400, 400, 110, 95);
+  noStroke();
+  fill('#ADDF2F');
+  ellipse(460, 400, 50, 70);
+  pop();
+  //boca
+  push();
+  stroke('green');
+  strokeWeight(5);
+  fill("green");
+  ellipse(463, 403, 28, 48);
+  pop();
+  fill('black');
+  ellipse(457, 403, 20, 37);
+  //ojos
+  push();
+  ellipse(430, 380, 9, 14);
+  ellipse(410, 385, 13, 18);
+  pop();
+  //tallo
+  push();
+  strokeWeight(10);
+  line(380, 450, 375, 470);
+  line(375, 470, 385, 515);
+  arc(540, 100, 300, 100, 180, 360, CHORD);
+
+  pop();
+
+  
 }
