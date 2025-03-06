@@ -11,6 +11,7 @@ function setup() {
 function draw() {
   //Fondo
   background(120, 122, 34);
+  arc(388, 440, 30, 30, PI / 4, PI, CHORD);
   //Cabeza
   push();
   fill('#ADFF2F');
@@ -38,8 +39,8 @@ function draw() {
   strokeWeight(10);
   line(380, 450, 375, 470);
   line(375, 470, 385, 515);
-  arc(540, 100, 300, 100, 180, 360, CHORD);
 
+  arc(540, 100, 300, 100, 90, 330, CHORD);
   pop();
 
   
