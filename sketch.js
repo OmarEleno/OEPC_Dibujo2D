@@ -1,7 +1,12 @@
 let grado = Math.PI / 180;
 let gradoA= Math.PI / 180;
-let x = 470;
-let y = 400;
+let x1 = 0;
+let y1 = 0;
+let lanzarGuisante = false;
+let cuadrante;
+let aux = x1+70;
+let x=0;
+let y=0;
 function preload() {
   // put preload code here
 }
@@ -14,49 +19,61 @@ function setup() {
 function draw() {
   //Fondo
   background(120, 122, 34);
-    dibujarLanzaguisante();
-    dibujarGuisante();
-    if(x<800){
-      x +=10;
-    }else{
-      x=470;
-    }
+   // dibujarLanzaguisante();
+   dibujaPos(x, y);
+   /*dibujaPos(1, 2);
+   dibujaPos(2, 1);
+   dibujaPos(2, 2);
+  */
+   /*
+    if(lanzarGuisante == true){
+      dibujarGuisante();
+      if(aux<800){
+        aux +=10;
+      }else{
+        aux = x1 +70;
+      }
+    }*/
   }
 
 
-
+function dibujaPos(x, y){
+  x1 = x * 250 + 250;
+  y1 = y * 250 + 250;
+  dibujarLanzaguisante(x1, y1);
+}
 function dibujarGuisante(){
-  circle(x, y, 50);
+  circle(aux, y1, 50);
 }
 
-function dibujarLanzaguisante(){
+function dibujarLanzaguisante(x, y){
  //Cabeza
  push();
  fill('#ADFF2F');
- ellipse(400, 400, 110, 95);
+ ellipse(x, y, 110, 95);
  noStroke();
  fill('#ADDF2F');
- ellipse(460, 400, 50, 70);
+ ellipse(x+60, y, 50, 70);
  pop();
  //boca
  push();
  stroke('green');
  strokeWeight(5);
  fill("green");
- ellipse(463, 403, 28, 48);
+ ellipse(x+63, y+3, 28, 48);
  pop();
  fill('black');
- ellipse(457, 403, 20, 37);
+ ellipse(x+57, y+3, 20, 37);
  //ojos
  push();
- ellipse(430, 380, 9, 14);
- ellipse(410, 385, 13, 18);
+ ellipse(x+30, y-20, 9, 14);
+ ellipse(x+10, y-15, 13, 18);
  pop();
 
  //HOJAS
  push();
  fill('green');
- translate(360, 510);
+ translate(x-40, y+110);
  // Hoja izquierda trasera
  rotate(gradoA*30);
  ellipse(0, 0, 50, 30);
@@ -69,13 +86,13 @@ function dibujarLanzaguisante(){
  push();
  stroke(120, 220, 80);
  strokeWeight(10);
- line(380, 450, 375, 470);
- line(375, 470, 385, 515);
+ line(x-20, y+50, x-25, y+70);
+ line(x-25, y+70, x-15, y+115);
 pop();
 //--------------------------------------
  push();
  fill('green');
- translate(360, 520);
+ translate(x-40, y+120);
  // Hoja izquierda delantera
  rotate(gradoA*-10);
  ellipse(0, 0, 51, 31);
@@ -89,22 +106,34 @@ pop();
  fill('green');
  strokeWeight(4);
  stroke('green');
- circle(328, 367, 28);
- line(323, 353, 352, 375);
- line(324, 354, 354, 371);
- line(314, 370, 320, 400);
- line(324, 370, 320, 400);
- line(340, 375, 320, 390);
+ circle(x-72, y-33, 28);
+ line(x-77, y-47, x-48, y-25);
+ line(x-76, y-46, x-46, y-29);
+ line(x-86, y-30, x-80, y);
+ line(x-76, y-30, x-80, y);
+ line(x-60, y-25, x-80, y-10);
  pop();
  push();
  fill('black');
  strokeWeight(1);
- line(341, 370, 352, 378);
- line(343, 363, 357, 372);
+ line(x-59, y-30, x-48, y-22);
+ line(x-57, y-37, x-43, y-28);
  strokeWeight(2);
- line(325, 374, 320, 390);
+ line(x-75, y-26, x-80, y-10);
  strokeWeight(3);
- line(335, 360, 325, 374);
+ line(x-65, y-40, x-75, y-26);
  pop();
- arc(388, 440, 30, 30, grado*45, grado*180, CHORD);
+ arc(x-12, y+40, 30, 30, grado*35, grado*170, CHORD);
 }
+
+function mousePressed(){
+  /*
+  if(lanzarGuisante == false){
+  lanzarGuisante = true;
+  }else{
+    lanzarGuisante = false;
+  }*/
+      x = Math.floor(mouseX / 250);
+      y = Math.floor(mouseY / 250);
+    
+    }
