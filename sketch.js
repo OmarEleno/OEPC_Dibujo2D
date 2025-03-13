@@ -56,13 +56,14 @@ function draw() {
       }
     }
   }
+  //Cursor
+  push();
+  fill(0,120,120, 70);
+  rect(mouseX, mouseY, 90, 60);
+  noCursor();
+  pop();
 }
 
-for(let i=0; i<3; i++){
-  for(let j=0; j<3; j++){
-
-  }
-}
 
 function dibujaPos(x, y) {
   x1 = x * 250 + 125;
@@ -169,5 +170,5 @@ function mousePressed() {
     matrizLG[x][y] = 0;
   }
 
-  
+
 }
