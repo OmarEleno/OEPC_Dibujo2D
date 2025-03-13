@@ -6,6 +6,8 @@ let lanzarGuisante = true;
 let aux = 0;
 let x = 0;
 let y = 0;
+let a = 25;
+
 let matrizLG = [
   [0, 0, 0, ],
   [0, 0, 0, ],
@@ -15,9 +17,6 @@ let matrizG = [
   [0, 0, 0, ],
   [0, 0, 0, ]];
 
-function preload() {
-  // put preload code here
-}
 
 function setup() {
   // put setup code here
@@ -27,51 +26,54 @@ function setup() {
 function draw() {
   // Fondo
   background(120, 122, 34);
+  push();
+  fill(70, 200, 30, 50);
+  rect(20, 20, 250, 250);
+  rect(270, 20, 250, 250);
+  rect(520, 20, 250, 250);
+  rect(20, 270, 250, 250);
+  rect(270, 270, 250, 250);
+  rect(520, 270, 250, 250);
+  rect(20, 520, 250, 250);
+  rect(270, 520, 250, 250);
+  rect(520, 520, 250, 250);
+
+  pop();
+
   for(let i=0; i<3; i++){
     for(let j=0; j<3; j++){
       if(matrizLG[i][j] == 1){
         dibujaPos(i, j);
-        matrizG[i][j] = 250*i + 125;
-
+        if (matrizG[i][j] === 0) {
+          matrizG[i][j] = 250 * i + 175; 
+                }
+        if (matrizG[i][j] < width*1.5) {
+          matrizG[i][j] += 10;  
+        }else{
+          matrizG[i][j] = 250 * i + 175;            
+        }
+        dibujarGuisante(matrizG[i][j]+a, j*250 + 125);
       }
     }
   }
-  
-  //VersionInutil
-  for(let i=0; i<3; i++){
-    for(let j=0; j<3; j++){
-     if(matrizG[i][j] != 0){
-      dibujarGuisante(matrizG[i][j], j*250 + 125);
-      if (aux < 800) {
-        aux += 10;
-      } else {
-        aux = x + 70;
-     }    
-   }
-  }
-  }
+}
 
-  /*if (lanzarGuisante == true) {
-    dibujarGuisante();
-    if (aux < 800) {
-      aux += 10;
-    } else {
-      aux = x + 70;
-    }
-  }*/ 
+for(let i=0; i<3; i++){
+  for(let j=0; j<3; j++){
+
+  }
 }
 
 function dibujaPos(x, y) {
   x1 = x * 250 + 125;
   y1 = y * 250 + 125;
+
   dibujarLanzaguisante(x1, y1);
-  if (!lanzarGuisante) {
-    aux = x1;
-  }
 }
 
-function dibujarGuisante() {
-  circle(aux, y1, 50);
+function dibujarGuisante(x2, y2) {
+  fill('green');
+  circle(x2, y2, 50);
 }
 
 function dibujarLanzaguisante(x, y) {
@@ -167,13 +169,5 @@ function mousePressed() {
     matrizLG[x][y] = 0;
   }
 
-}
-
-function keyPressed() {
-  /*if (keyCode === ENTER) {
-    lanzarGuisante = true;
-  }
-  if(keyCode === BACKSPACE){
-    lanzarGuisante = false;
-  }*/
+  
 }
