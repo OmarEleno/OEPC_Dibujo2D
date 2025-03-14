@@ -1,13 +1,10 @@
 let grado = Math.PI / 180;
 let gradoA = Math.PI / 180;
-let x1 = 0;
-let y1 = 0;
-let lanzarGuisante = true;
 let aux = 0;
 let x = 0;
 let y = 0;
-let a = 25;
-
+let x1 = 0;
+let y1 = 0;
 let matrizLG = [
   [0, 0, 0, ],
   [0, 0, 0, ],
@@ -16,6 +13,12 @@ let matrizG = [
   [0, 0, 0, ],
   [0, 0, 0, ],
   [0, 0, 0, ]];
+
+let sonidoGuisante;
+
+function preload(){
+  sonidoGuisante = loadSound('./sounds/guisante.mp3')
+}
 
 
 function setup() {
@@ -26,6 +29,7 @@ function setup() {
 function draw() {
   // Fondo
   background(120, 122, 34);
+  //Cuadricula
   push();
   fill(70, 200, 30, 50);
   rect(20, 20, 250, 250);
@@ -37,44 +41,47 @@ function draw() {
   rect(20, 520, 250, 250);
   rect(270, 520, 250, 250);
   rect(520, 520, 250, 250);
-
   pop();
 
   for(let i=0; i<3; i++){
     for(let j=0; j<3; j++){
       if(matrizLG[i][j] == 1){
-        dibujaPos(i, j);
+        dibujaPrincipal(i, j);
         if (matrizG[i][j] === 0) {
-          matrizG[i][j] = 250 * i + 175; 
+          matrizG[i][j] = 250 * i + 200; 
                 }
         if (matrizG[i][j] < width*1.5) {
           matrizG[i][j] += 10;  
         }else{
           matrizG[i][j] = 250 * i + 175;            
         }
-        dibujarGuisante(matrizG[i][j]+a, j*250 + 125);
+        dibujarGuisante(matrizG[i][j], j*250 + 125);
       }
     }
   }
-  //Cursor
-  push();
-  fill(0,120,120, 70);
-  rect(mouseX, mouseY, 90, 60);
-  noCursor();
-  pop();
+      //Cursor
+      push();
+        fill(0,120,120, 70);
+        rect(mouseX, mouseY, 90, 60);
+        noCursor();
+      pop();
 }
 
 
-function dibujaPos(x, y) {
+function dibujaPrincipal(x, y) {
   x1 = x * 250 + 125;
   y1 = y * 250 + 125;
-
   dibujarLanzaguisante(x1, y1);
 }
 
 function dibujarGuisante(x2, y2) {
   fill('green');
   circle(x2, y2, 50);
+  if(sonidoGuisante.isPlaying())
+  {sonidoGuisante.stop(); 
+  }else{
+    sonidoGuisante.play();
+  }
 }
 
 function dibujarLanzaguisante(x, y) {
@@ -169,6 +176,4 @@ function mousePressed() {
   }else{
     matrizLG[x][y] = 0;
   }
-
-
 }
