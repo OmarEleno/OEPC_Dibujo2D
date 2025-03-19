@@ -15,7 +15,7 @@ let matrizG = [
   [0, 0, 0, ]];
 
 let sonidoGuisante;
-
+let temp = false;
 function preload(){
   sonidoGuisante = loadSound('./sounds/guisante.mp3')
 }
@@ -49,22 +49,64 @@ function draw() {
         dibujaPrincipal(i, j);
         if (matrizG[i][j] === 0) {
           matrizG[i][j] = 250 * i + 200; 
-                }
+          sonidoGuisante.play();  
+          
+        }
         if (matrizG[i][j] < width*1.5) {
-          matrizG[i][j] += 10;  
+          matrizG[i][j] += 10; 
+          
         }else{
-          matrizG[i][j] = 250 * i + 175;            
+          matrizG[i][j] = 250 * i + 200; 
+          sonidoGuisante.play();  
+          temp=false;       
         }
         dibujarGuisante(matrizG[i][j], j*250 + 125);
       }
+ 
+      if(matrizLG[Math.floor(mouseX / 250)][Math.floor(mouseY/250)]==1){
+        temp=true;
+      }else{
+        temp = false;
+      }
+      //Cursor
+  if(temp==true){
+    push();
+    let x = mouseX;
+    let y = mouseY;
+    let size = 50;
+    //triangle(x, y - size/2, x - size/6, y + size, x + size+15, y + size / 5);
+    strokeWeight(10);
+    stroke('brown');
+    //line(x, y + size, x, y+2*size);
+    line(x - size / 3, y + size, x - size, y + 2 * size);
+
+    stroke(0);
+    strokeWeight(2);
+    fill('gray');
+    triangle(x-1.5*size, y + 3*size, x - 2*size, y + 1.5*size, x + size/2-10, y + 2.5*size);
+    noFill();
+    strokeWeight(8);
+    stroke('red');
+    rect(x-size/2, y+size/2, size, size/2);
+    line(x-size, y+size/2, x+size, y+size);
+    noCursor();
+    pop();
+    }else{
+    push();
+    fill(0,120,120, 70);
+    rect(mouseX, mouseY, 90, 60);
+    noCursor();
+    pop();
+    }
     }
   }
+  
       //Cursor
-      push();
+      /*push();
         fill(0,120,120, 70);
         rect(mouseX, mouseY, 90, 60);
         noCursor();
-      pop();
+      pop();*/
 }
 
 
@@ -77,11 +119,11 @@ function dibujaPrincipal(x, y) {
 function dibujarGuisante(x2, y2) {
   fill('green');
   circle(x2, y2, 50);
-  if(sonidoGuisante.isPlaying())
+  /*if(sonidoGuisante.isPlaying())
   {sonidoGuisante.stop(); 
   }else{
     sonidoGuisante.play();
-  }
+  }*/
 }
 
 function dibujarLanzaguisante(x, y) {
