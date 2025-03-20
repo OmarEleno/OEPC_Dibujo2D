@@ -88,7 +88,7 @@ function draw() {
     strokeWeight(8);
     stroke('red');
     rect(x-size/2, y+size/2, size, size/2);
-    line(x-size, y+size/2, x+size, y+size);
+    //line(x-size, y+size/2, x+size, y+size);
     noCursor();
     pop();
     }else{
@@ -101,12 +101,6 @@ function draw() {
     }
   }
   
-      //Cursor
-      /*push();
-        fill(0,120,120, 70);
-        rect(mouseX, mouseY, 90, 60);
-        noCursor();
-      pop();*/
 }
 
 
@@ -119,11 +113,6 @@ function dibujaPrincipal(x, y) {
 function dibujarGuisante(x2, y2) {
   fill('green');
   circle(x2, y2, 50);
-  /*if(sonidoGuisante.isPlaying())
-  {sonidoGuisante.stop(); 
-  }else{
-    sonidoGuisante.play();
-  }*/
 }
 
 function dibujarLanzaguisante(x, y) {
